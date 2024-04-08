@@ -28,6 +28,92 @@ print("Welcome back to the UW Calculator")
 //: IMPORTANT: If any tests are commented out, you will be graded a zero (0)! You should never be in the habit of eliminating tests to make the code pass.
 //:
 class Calculator {
+    
+    func add(lhs: Int, rhs: Int) -> Int {
+        return lhs + rhs
+    }
+    
+    func subtract(lhs: Int, rhs: Int) -> Int {
+        return lhs - rhs
+    }
+    
+    func multiply(lhs: Int, rhs: Int) -> Int {
+        return lhs * rhs
+    }
+    
+    func divide(lhs: Int, rhs: Int) -> Int {
+        return lhs/rhs
+    }
+    
+    func mathOp(lhs: Int, rhs: Int, op:(Int, Int) -> Int) -> Int {
+        return op(lhs, rhs)
+    }
+    
+    func add(_ arr: [Int]) -> Int {
+        var total = 0
+        for i in 0...arr.count - 1 {
+            total += arr[i]
+        }
+        return total
+    }
+    
+    func multiply(_ arr: [Int]) -> Int {
+        var total = arr[0]
+        for i in 1...arr.count - 1 {
+            total *= arr[i]
+        }
+        return total
+    }
+    
+    func count(_ arr: [Int]) -> Int {
+        return arr.count
+    }
+    
+    func avg(_ arr: [Int]) -> Int {
+        var total = 0
+        for i in 0...arr.count - 1 {
+            total += arr[i]
+        }
+        return total / (arr.count)
+    }
+    
+    func mathOp(args: [Int], beg: Int, op: (Int, Int) -> Int) -> Int {
+        var total = beg
+        for i in 0...args.count - 1 {
+            total = op(total, args[i])
+        }
+        return total
+    }
+    
+    func add(lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int) {
+        return (lhs.0 + rhs.0, lhs.1 + rhs.1)
+    }
+    
+    func subtract(lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int) {
+        return (lhs.0 - rhs.0, lhs.1 - rhs.1)
+    }
+    
+    func add(lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
+        var dict: [String: Int] = [:]
+        for (key, value) in lhs {
+            dict[key] = (dict[key] ?? 0) + value
+        }
+        for (key, value) in rhs {
+            dict[key] = (dict[key] ?? 0) + value
+        }
+        return dict
+    }
+    
+    func subtract(lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
+        var dict: [String: Int] = [:]
+        for (key, value) in lhs {
+            dict[key] = (dict[key] ?? 0) + value
+        }
+        for (key, value) in rhs {
+            dict[key] = (dict[key] ?? 0) - value
+        }
+        return dict
+    }
 }
 
 //: Don't change the name of this object (`calc`); it's used in all the tests.
@@ -52,7 +138,7 @@ calc.subtract(lhs: 2, rhs: 2) == 0
 calc.multiply(lhs: 2, rhs: 2) == 4
 calc.divide(lhs: 2, rhs: 2) == 1
 
-calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rjs) + (lhs * rhs) }) == 35
+calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rhs) + (lhs * rhs) }) == 35
     // This style is one way of writing an anonymous function
 calc.mathOp(lhs: 10, rhs: -5, op: { ($0 + $1) + ($0 - $1) }) == 20
     // This is the second, more terse, style; either works

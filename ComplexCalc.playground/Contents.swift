@@ -50,19 +50,27 @@ class Calculator {
     }
     
     func add(_ arr: [Int]) -> Int {
-        var total = 0
-        for i in 0...arr.count - 1 {
-            total += arr[i]
+        if (arr.count != 0) {
+            var total = 0
+            for i in 0...arr.count - 1 {
+                total += arr[i]
+            }
+            return total
         }
-        return total
+        return 0
     }
     
     func multiply(_ arr: [Int]) -> Int {
-        var total = arr[0]
-        for i in 1...arr.count - 1 {
-            total *= arr[i]
+        if (arr.count != 0) {
+            var total = arr[0]
+            if (arr.count > 1) {
+                for i in 1...arr.count - 1 {
+                    total *= arr[i]
+                }
+            }
+            return total
         }
-        return total
+        return 0
     }
     
     func count(_ arr: [Int]) -> Int {
@@ -70,11 +78,14 @@ class Calculator {
     }
     
     func avg(_ arr: [Int]) -> Int {
-        var total = 0
-        for i in 0...arr.count - 1 {
-            total += arr[i]
+        if (arr.count != 0) {
+            var total = 0
+            for i in 0...arr.count - 1 {
+                total += arr[i]
+            }
+            return total / (arr.count)
         }
-        return total / (arr.count)
+        return 0
     }
     
     func mathOp(args: [Int], beg: Int, op: (Int, Int) -> Int) -> Int {
@@ -129,7 +140,19 @@ let calc = Calculator()
 //: Keep in mind that writing new tests may reveal ambiguity in the specification above--if that's the case, document the ambiguity, declare what you think *should* happen, and write the test to test for it.
 
 // ===== Your tests go here
+calc.add(lhs: -1, rhs: -5) == -6
+// This should check negatives and check if the function was implemented correctly where the lhs - rhs
+calc.subtract(lhs: -4, rhs: 3) == -7
 
+// The average of a empty array should give a 0
+// Realistically it should give an error
+calc.avg([]) == 0
+calc.add([]) == 0
+calc.multiply([]) == 0
+
+// Checks to see if one element is in the array
+calc.add([1]) == 1
+calc.multiply([1]) == 1
 //: ---
 //: ## Test code block
 //: Do not modify the code in this section
